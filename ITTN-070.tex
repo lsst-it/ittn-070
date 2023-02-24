@@ -1,5 +1,5 @@
-\documentclass[PMO,authoryear,toc]{lsstdoc}
-\input{meta}
+\documentclass[PMO,authoryear,lsstdraft,toc]{lsstdoc}
+
 
 % Package imports go here.
 
@@ -15,13 +15,13 @@
 % \setDocSubtitle{A subtitle}
 
 \author{%
-Cristian Silva
+Cristian Silva, Joshua Hoblitt
 }
 
 \setDocRef{ITTN-070}
 \setDocUpstreamLocation{\url{https://github.com/lsst-it/ittn-070}}
 
-\date{\vcsDate}
+\date{\today}
 
 % Optional: name of the document's curator
 % \setDocCurator{The Curator of this Document}
@@ -35,7 +35,7 @@ Scope and requirements of the observability project.
 % Fields: VERSION, DATE, DESCRIPTION, OWNER NAME.
 % See LPM-51 for version number policy.
 \setDocChangeRecord{%
-  \addtohist{1}{YYYY-MM-DD}{Unreleased.}{Cristian Silva}
+  \addtohist{1}{2023-01-24}{First Version}{Cristian Silva, Joshua Hoblitt}
 }
 
 
@@ -48,6 +48,8 @@ Scope and requirements of the observability project.
 
 % ADD CONTENT HERE
 % You can also use the \input command to include several content files.
+
+\input{content.tex}
 
 \appendix
 % Include all the relevant bib files.

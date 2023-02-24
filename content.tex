@@ -1,0 +1,86 @@
+\section{Introduction}
+
+The Rubin Observatory is a state-of-the-art astronomical facility designed to study the universe through the Legacy Survey of Space and Time (LSST). With its advanced telescopes and cutting-edge technology, the Rubin Observatory is expected to generate an enormous amount of astronomical data that will offer unprecedented insights into the cosmos. However, managing and processing such a massive amount of data presents a significant challenge, and it is essential to ensure the observability of the system to detect, diagnose, and resolve issues that may arise. 
+
+The goal of this document is to set the requirements for an observability project for the Rubin Observatory 
+
+\section{Scope}
+
+The observability project for the Rubin Observatory will cover the following system components:
+
+\begin{itemize}
+\item Hardware and software systems supporting the telescope operations.
+\item The data processing pipelines used to transform raw telescope data into scientific results
+\item The storage and retrieval systems used to store and manage astronomical data
+\end{itemize}
+
+\section{Infrastructure}
+
+The following is the summary of the Rubin's Infrastructure
+
+\begin{itemize}
+    \item Foreman instances:	4
+    \item Puppetserver/puppetdb instances: 4
+    \item Hosts known to foreman: 328
+    \item Additional servers coming online this year: 100
+    \item Network devices (switches, PDUs, etc.): 100
+    \item Additional network devices coming this year: 40
+    \item Physical locations: 3
+    \item Logical sites: 4
+    \item K8s clusters: 13
+    \item Rook-ceph deployments: 11
+    \item Graylog instances: 2
+    \item Graylog burst input (per second): 9000
+    \item Graylog log volume day (GiB): 205.1
+\end{itemize}
+
+Current software status
+
+\begin{itemize}
+    \item K8s logs shipped via fluentbit
+    \item Host logs via rsyslog
+    \item K8s metrics prometheus
+    \item Host metrics telegraf
+    \item Influx on k8s (per site)
+    \item Grafana on k8s (per site)
+    \item User authentication on IPA
+\end{itemize}  
+
+\section{Requirements}
+
+The following requirements are considered essential:
+
+\begin{itemize}
+    \item Provide performance monitoring of hosts and network devices 
+    \item Collect log data from hosts and network devices
+    \item Collect audit logs from hosts
+    \item Trigger notifications based on metrics
+    \item Trigger notifications on syslog data
+    \item Scrape k8s data. E.g. collect kverno audits
+    \item Collect switch counters (snmp, etc)
+    \item Collect ceph metrics... e.g. volume data and trigger notifciations
+    \item Push notifications via squadcast
+    \item Push notifications to a slack channel
+    \item Push notifications to a kafka topic
+    \item The ability to easily define monitoring checks via config/code in a git repo
+    \item Per site observatility/monitoring stack
+    \item Dashboards per k8s ns/pod
+    \item Dashboards per host and group of hosts
+    \item Dashboards for network devices which include per and error counters
+    \item Log vew which shows sudo usage. E.g. messages to a slack channel when user sudo's to root
+    \item Useful workflows for jr. and helpdesk
+    \item Dashboard per group of users on ipa 
+    \item Simplified dashboard for non-technical staff
+    \item Collect firewall logs
+    \item Provide security related alerts. 
+\end{itemize} 
+
+The following requirements are considered desirable:
+
+\begin{itemize}
+    \item Single dashboard integration of all sites
+    \item "Per tentant" k8s workspace metric
+    \item "Per tentant" views of hosts logs
+    \item "Per tentant" views of pod logs
+    \item Basic logs/metrics/monitoring of new hosts to happen automatically (e.g. via foreman or puppetdb)
+\end{itemize} 
